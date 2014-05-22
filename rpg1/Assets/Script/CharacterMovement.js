@@ -5,16 +5,17 @@ var speed: float;
 var speedRun: float;
 var speedRotate: float;
 var jumpSpeed: float;
+var particle: GameObject;
+var anim: Animation;
+var isHitting: boolean;
 
 //Private var
 private var controller: CharacterController;
 private var moveDirection: Vector3;
-private var characterContent: Transform;
 private var runAnim: boolean;
 
 function Start () {
 	controller = GetComponent("CharacterController");
-	characterContent = transform.Find("Perso");
 }
 
 function Update () {
@@ -30,20 +31,31 @@ function Update () {
 			moveDirection = Vector3(0, 0, Input.GetAxis("Vertical") * speed);
 		}
 
+		//Coup de poing
+		if (Input.GetKey(KeyCode.Q)){
+			isHitting = true;
+			anim.CrossFade("punch", 0.2);
+		}
+
+		//Attendre la fin de l'animation puch
+		if (!anim["punch"].enabled){
+			isHitting = false;
+		}
+
 		//Gestion de l'animation
 		if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow)){
 			if (!runAnim){
-				characterContent.animation.CrossFade("walk", 0.2);
+				anim.CrossFade("walk", 0.2);
 			}else{
-				characterContent.animation.CrossFade("run", 0.2);
+				anim.CrossFade("run", 0.2);
 			}
-		}else{
-			characterContent.animation.CrossFade("idle", 0.2);
+		}else if (!isHitting){
+			anim.CrossFade("idle", 0.2);
 		}
 
 		if (Input.GetKey(KeyCode.Space)){
 			moveDirection.y = jumpSpeed;
-			characterContent.animation.CrossFade("jump", 0.2);
+			anim.CrossFade("jump", 0.2);
 		}
 	}
 
@@ -58,4 +70,12 @@ function Update () {
 
 	//Deplacement du Character Controller
 	controller.Move(moveDirection * Global.deltaTime);
+}
+
+function OnTriggerEnter(hit:Collider){
+	if (hit.transform.tag == "dagger"){
+		Global.healthMain--;
+		var tmp = Instantiate(particle, transform.Find("PartTarget").position, transform.Find("PartTarget").rotation);
+		Destroy(tmp, 3);
+	}
 }
