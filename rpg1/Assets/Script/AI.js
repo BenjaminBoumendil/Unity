@@ -3,6 +3,7 @@
 //Public var
 var speed: int;
 var anim: Animation;
+var theScript: AI;
 
 //Private var
 private var controller: CharacterController;
@@ -20,12 +21,17 @@ function Start () {
 	delayRotation = Random.Range(1, 6);
 	newRotation = Random.Range(-360, 361);
 	controller = GetComponent("CharacterController");
+	theScript = GetComponent(AI);
 }
 
 function Update () {
 	//Golem damage
 	if (health <= 0){
 		anim.CrossFade("die", 0.5);
+		Destroy(gameObject, 5);
+		controller.enabled = false;
+		theScript.enabled = false;
+		Global.currentObjective++;
 		return ;
 	}
 
