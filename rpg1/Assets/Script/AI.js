@@ -79,9 +79,9 @@ function Update () {
 
 	//Animations
 	if (fight){
-		anim.CrossFade("attack", 0.5 * Global.deltaTime);
+		anim.CrossFade("attack", 0.5);
 	}else{
-		anim.CrossFade("run", 0.5 * Global.deltaTime);
+		anim.CrossFade("run", 0.5);
 	}
 
 	//Deplacement ennemy
@@ -99,5 +99,5 @@ function OnControllerColliderHit(hit:ControllerColliderHit){
 //Golem damage
 function getHit(nb:int){
 	health -= nb;
-	guiText.text = Global.dmgToEnnemy;
+	// guiText.text = Global.dmgToEnnemy;
 }
