@@ -46,7 +46,14 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\CharacterClasses\Attributes.cs" />
+     <Compile Include="Assets\Scripts\CharacterClasses\BaseCharacter.cs" />
      <Compile Include="Assets\Scripts\CharacterClasses\BaseStats.cs" />
+     <Compile Include="Assets\Scripts\CharacterClasses\CharacterGenerator.cs" />
+     <Compile Include="Assets\Scripts\CharacterClasses\ModifiedStat.cs" />
+     <Compile Include="Assets\Scripts\CharacterClasses\PlayerCharacter.cs" />
+     <Compile Include="Assets\Scripts\CharacterClasses\Skill.cs" />
+     <Compile Include="Assets\Scripts\CharacterClasses\Vital.cs" />
      <Compile Include="Assets\Scripts\EnemyAI.cs" />
      <Compile Include="Assets\Scripts\EnemyAttack.cs" />
      <Compile Include="Assets\Scripts\EnemyHealth.cs" />

@@ -11,26 +11,28 @@
 		_expToLevel = 100;
 	}
 
+#region Setters and Getters
 	// Basic Setters and Getters
-	public int BaseValue() {
+	public int BaseValue {
 		get{ return _baseValue; }
 		set{ _baseValue = value; }
 	}
 
-	private int BuffValue() {
+	public int BuffValue {
 		get{ return _buffValue; }
 		set{ _buffValue = value; }
 	}
 
-	private int ExpToLevel() {
+	public int ExpToLevel {
 		get{ return _expToLevel; }
 		set{ _expToLevel = value; }
 	}
 
-	private float LevelModifier() {
+	public float LevelModifier {
 		get{ return _levelModifier; }
 		set{ _levelModifier = value; }
 	}
+#endregion
 
 	private int CalculateExpToLevel() {
 		return (int)(_expToLevel * _levelModifier);
@@ -41,7 +43,7 @@
 		_baseValue++;
 	}
 
-	public int AdjustedValue() {
-		return _baseValue + _buffValue;
+	public int AdjustedBaseValue {
+		get{ return _baseValue + _buffValue; }
 	}
 }
